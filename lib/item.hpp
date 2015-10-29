@@ -3,7 +3,6 @@
 
 #include <string>
 #include <sys/time.h>
-#include <stdexcept>
 #include <math.h>
 #include <iostream>
 
@@ -24,8 +23,6 @@ class Item {
 			priority(p),
 			timeout(t) {}
 		bool operator<(Item other) const;
-		void setPriority(int p) { priority = p; }
-		void setTimeout(int t) { timeout = t; }
 		void setTimeAdded(ull t) { timeAdded = t; }
 		int getPriority() { return priority; }
 		int getTimeout() { return timeout; }
@@ -34,6 +31,7 @@ class Item {
 		std::string getPriorityString();
 		std::string getTimeoutString();
 		bool isFaulty();
+		void printWithoutTime();
 		void print();
 };
 

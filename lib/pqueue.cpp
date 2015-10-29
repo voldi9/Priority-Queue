@@ -103,11 +103,17 @@ bool Pqueue::reachedTimeout(Item item) {
 }
 
 
-//function used for debugging purposes
+//function prints the count and the items in a matrix corresponding
+//with their priorities and timeouts
+//TODO: output formatting so the matrix is more readable with higher
+//amount of items
 void Pqueue::print() {
 	int i = 0;
 	std::cout << "count: " << count() << "\n";
-	for(auto queue : itemsByProperties) {
-		std::cout << "priority " << Priority(i++) << ": " << queue[0].size() + queue[1].size() + queue[2].size() << "\n";
+	for(auto &queuesRow : itemsByProperties) {
+		for(auto &queue : queuesRow){
+			std::cout << queue.size() << " ";
+		}		
+		std::cout << "\n";
 	}
 }

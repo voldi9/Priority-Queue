@@ -8,22 +8,27 @@
 #include <thread>
 #include <iostream>
 
-//the class is responsible for removing the top item as well as
-//all timedout items from the pqueue every interval (in milliseconds
-//it also prints to the standard output all those items
+#define STR_REMOVED_TOP "Removed top item: "
+#define STR_REMOVED_TIMEDOUT "Removed the following timedout items:\n"
+#define TAB char(9)
+#define DEFAULT_INTERVAL 10000 //default interval between calling execute() functions in milliseconds
+
+
 class TimedCleaner {
 	private:
-		Pqueue* pqueue;
+		Pqueue *pqueue;
 		unsigned interval;
-		int exitFlag;
-	public:
-		void run();
 		void removeTop();
 		void removeTimedout();
-		TimedCleaner(Pqueue* pq, unsigned i) :
+	public:
+		TimedCleaner(Pqueue *pq) :
 			pqueue(pq),
-			interval(i),
-			exitFlag(0) {}
+			interval(DEFAULT_INTERVAL) {}
+		TimedCleaner(Pqueue *pq, unsigned i) :
+			pqueue(pq),
+			interval(i) {}
+		void sleep();
+		void execute();
 };
 
 #endif

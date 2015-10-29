@@ -21,7 +21,7 @@ std::string Item::getPriorityString() {
 		case 0: return "high";
 		case 1: return "medium";
 		case 2: return "low";
-		default: throw std::runtime_error(STR_UNKNOWN_PRIORITY);
+		default: return "unknown";
 	}
 }
 
@@ -31,7 +31,7 @@ std::string Item::getTimeoutString() {
 		case 0: return "short";
 		case 1: return "medium";
 		case 2: return "long";
-		default: throw std::runtime_error(STR_UNKNOWN_TIMEOUT);
+		default: return "unknown";
 	}
 }
 
@@ -47,7 +47,12 @@ bool Item::isFaulty() {
 }
 
 //prints some info about the item to the standard output
+void Item::printWithoutTime() {
+	std::cout << "priority - " << getPriorityString() << ", timeout - " << getTimeoutString() << "\n";
+}
+
+//prints the same info as printWithoutTime() but also the time since addition
 void Item::print() {
-	std::cout << "priority: " << getPriorityString() << ", timeout: " << getTimeoutString() 
+	std::cout << "priority - " << getPriorityString() << ", timeout - " << getTimeoutString() 
 				<< ", added " << round((float) timeElapsed() / 100.) / 10. << " seconds ago\n";
 }
