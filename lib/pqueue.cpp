@@ -27,8 +27,6 @@ void Pqueue::addItem(Item item) {
 		std::cerr << STR_INVALID_TIMEOUT;
 	}
 	else {
-
-		//mutex!!!
 		item.setTimeAdded(getCurrentTime());
 		itemsByProperties[p][t].push(item);
 	}
@@ -47,7 +45,7 @@ bool Pqueue::empty() {
 	return true;
 }
 
-
+#include <stdexcept>
 //returns the top element of Pqueue and deletes it (many of the STL containers' deletion methods return the deleted item,
 //I decided to do so as well). If pqueue is empty prints error and returns faulty Item with both priority and timeout set to -1
 Item Pqueue::popTop() {
@@ -69,7 +67,7 @@ Item Pqueue::popTop() {
 			return returnedItem;
 		}
 	}
-	std::cerr << STR_INVALID_DELETION << STR_PQUEUE_EMPTY;
+	throw std::runtime_error(std::string(STR_INVALID_DELETION STR_PQUEUE_EMPTY));
 	return Item(-1, -1);
 }
 

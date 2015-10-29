@@ -4,7 +4,9 @@
 #include "item.hpp"
 #include <queue>
 #include <vector>
+#include <string>
 #include <algorithm>
+#include <stdexcept>
 #include <iostream>
 
 

@@ -35,8 +35,8 @@ void TimedCleaner::sleep() {
 //items, prints all of them to the standard output. It also makes sure that
 //all the output is given at the same time by flushing cerr and cout
 void TimedCleaner::execute() {
-		removeTop();
-		removeTimedout();
+		removeTop(); //if this throws empty queue exception, we dont have to take care of it at this level, as
+		removeTimedout(); //this makes no sense on an empty queue either
 		std::cout.flush();
 		std::cerr.flush();
 }

@@ -1,6 +1,5 @@
 #include "wrapper.hpp"
 
-
 //repeats execute endlessly (or until something that changes the value of exitFlag occurs)
 void Wrapper::runCleaner() {
 	while(!timedCleanerExitFlag) {
@@ -9,8 +8,8 @@ void Wrapper::runCleaner() {
 		try {
 			tc->execute();
 		}
-		catch(std::string e) { //if exception was thrown, we need to remember to unlock the mutex
-			std::cerr << e;
+		catch(std::exception &e) { //if exception was thrown, we need to remember to unlock the mutex
+			std::cerr << e.what();
 		}
 		mutex.unlock();
 		tc->sleep(); //everything as planned, Cleaner can go to sleep for a while

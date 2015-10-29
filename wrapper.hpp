@@ -5,6 +5,7 @@
 #include "lib/pqueue.hpp"
 #include "ui.hpp"
 #include "timedcleaner.hpp"
+#include <stdexcept>
 #include <thread>
 #include <mutex>
 
