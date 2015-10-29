@@ -50,7 +50,9 @@ int main(int argc, char* argv[]) {
 		if(args[0] < args[1] && args[1] < args[2]) {
 			run(args);
 		}
+		else {
+			inproperArgs();
+		}
 	}
-
 	return 0;
 }
