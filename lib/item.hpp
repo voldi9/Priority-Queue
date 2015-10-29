@@ -5,6 +5,7 @@
 #include <sys/time.h>
 #include <stdexcept>
 #include <math.h>
+#include <iostream>
 
 #define STR_UNKNOWN_PRIORITY "Unknown priority: \n"
 #define STR_UNKNOWN_TIMEOUT "Unknown timeout: \n"

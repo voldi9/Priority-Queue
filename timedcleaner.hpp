@@ -1,9 +1,16 @@
 #ifndef TIMEDCLEANER_HPP
 #define TIMEDCLEANER_HPP
 
-#include "pqueue.hpp"
-#include "item.hpp"
+#include "lib/item.hpp"
+#include "lib/pqueue.hpp"
+#include <vector>
+#include <chrono>
+#include <thread>
+#include <iostream>
 
+//the class is responsible for removing the top item as well as
+//all timedout items from the pqueue every interval (in milliseconds
+//it also prints to the standard output all those items
 class TimedCleaner {
 	private:
 		Pqueue* pqueue;

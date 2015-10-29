@@ -1,6 +1,6 @@
 #include "item.hpp"
 
-//returns current time since EPOCH in miliseconds
+//returns current time since EPOCH in milliseconds
 ull getCurrentTime() {
 	struct timespec spec;
 	clock_gettime(CLOCK_REALTIME, &spec);
@@ -35,16 +35,18 @@ std::string Item::getTimeoutString() {
 	}
 }
 
-//returns the time elapsed since that item has been created, in miliseconds
+//returns the time elapsed since that item has been created, in milliseconds
 ull Item::timeElapsed() {
 	return getCurrentTime() - timeAdded;
 }
 
+//checks if the given item is an artificial one, meaning and item that is
+//supposed to make no sense
 bool Item::isFaulty() {
 	return (priority == -1 && timeout == -1);
 }
 
-#include <iostream>
+//prints some info about the item to the standard output
 void Item::print() {
 	std::cout << "priority: " << getPriorityString() << ", timeout: " << getTimeoutString() 
 				<< ", added " << round((float) timeElapsed() / 100.) / 10. << " seconds ago\n";

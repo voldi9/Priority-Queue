@@ -1,7 +1,5 @@
 #include "pqueue.hpp"
 
-#include <iostream>
-
 //returns the number of items currently in the priority queue
 int Pqueue::count() {
 	int count = 0;
@@ -75,33 +73,8 @@ Item Pqueue::popTop() {
 	return Item(-1, -1);
 }
 
-/*
-//deletes item from the pqueue and returns whether it was succesful
-bool Pqueue::popTop() {
-	int lta;
-	std::queue <Item> *candidate; //stores the list, front of which has the current candidate for top item
-	for(auto &queuesRow : itemsByProperties) {
-		lta = -1;
-		for(auto &queue : queuesRow) {
-			if(!queue.empty()) {
-				if(lta == -1 || lta > queue.front().getTimeAdded()) {
-					candidate = &queue;
-					lta = queue.front();
-				}
-			}
-		}
-		if(lta != -1) {
-			candidate->pop();
-			return true;
-		}
-	}
-	std::cerr << STR_INVALID_DELETION << STR_PQUEUE_EMPTY;
-	return false;
-}
-*/
-
 //deletes the items that have reached their timeout, returns a list containing them
-std::vector <Item> Pqueue::deleteAllTimedout() {
+std::vector <Item> Pqueue::removeAllTimedout() {
 	std::vector <Item> deleted;
 	for(auto &queuesRow : itemsByProperties) {
 		for(auto &queue : queuesRow) {
@@ -137,49 +110,4 @@ void Pqueue::print() {
 	for(auto queue : itemsByProperties) {
 		std::cout << "priority " << Priority(i++) << ": " << queue[0].size() + queue[1].size() + queue[2].size() << "\n";
 	}
-}
-
-
-int main() {
-	//Item item = Item(1, 3);
-	Pqueue pq = Pqueue();
-	//pq.addItem(item);
-	int a;
-	//pq.print();
-	int c = 0;
-	Item popped = Item(-1, -1);
-	while(std::cin >> a) {
-		switch(a) {
-			case 0:
-				popped = pq.popTop();
-				if(!popped.isFaulty()) {
-					std::cout << "delete succesful: ";
-					popped.print();
-					//std::cout << "\n";
-					pq.print();
-				}
-				else {
-					std::cout << "mistakes were made\n";
-				}
-				break;
-			case 1:
-				pq.addItem(Item(0, 0));
-				break;
-			case 2:
-				pq.addItem(Item(1, 2));
-				break;
-			case 3:
-				pq.addItem(Item(2, 1));
-				break;
-			case 4:
-				std::vector <Item> vec = pq.deleteAllTimedout();
-				for(auto item : vec) {
-					item.print();
-				}
-				break;
-		}
-		pq.print();
-	}
-	//bool b = item < Item(0, 5);
-	//std::cout << item.getPriorityString() << " " << b << " " << sizeof(Item) / sizeof(int) << "\n";
 }

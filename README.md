@@ -3,3 +3,5 @@ no boost for optional
 no mutex for cerr
 getCurrentTime in item
 rechedTimeout in pqueue
+on thread for cin, another for cout, flushing
+mutex not in Pqueue, but in main

@@ -1,0 +1,6 @@
+demo
+out
+log
+*.o
+*.out
+*.a

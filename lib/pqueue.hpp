@@ -6,6 +6,7 @@
 #include <vector>
 #include <algorithm>
 #include <stdexcept>
+#include <iostream>
 
 
 #define STR_INVALID_DELETION "Error while trying to delete item - "
@@ -35,7 +36,7 @@ class Pqueue {
 	private:
 		//each queue represents one of the priorities-timeouts combination
 		std::queue <Item> itemsByProperties[NUM_PRIORITIES][NUM_TIMEOUTS]; //FIFO queues
-		unsigned timeoutTimes[NUM_TIMEOUTS]; //time for each timeout in miliseconds
+		unsigned timeoutTimes[NUM_TIMEOUTS]; //time for each timeout in milliseconds
 	public:
 		Pqueue() :
 			timeoutTimes{DEFAULT_TIMEOUTS} {}
@@ -45,8 +46,7 @@ class Pqueue {
 		int count();
 		bool empty();
 		Item popTop();
-		//bool popTop();
-		std::vector <Item> deleteAllTimedout();
+		std::vector <Item> removeAllTimedout();
 		int timeTillTimeout(Item item);
 		bool reachedTimeout(Item item);
 		void print();
