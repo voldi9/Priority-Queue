@@ -20,7 +20,7 @@
 #define MAX_ITEMS 1000000 //max number of items in the queue at a given time
 #define NUM_PRIORITIES 3
 #define NUM_TIMEOUTS 3
-#define DEFAULT_TIMEOUTS 5000, 10000, 15000 //default timeout values in milliseconds
+#define DEFAULT_TIMEOUTS 5000, 10000, 15000 //default timeout values in milliseconds (MUST BE ASCENDING)
 
 enum Priority { HIGH, MEDIUM, LOW };
 enum Timeout { SHORT, LONG = 2 }; //medium is 1 in both of enums
@@ -48,7 +48,7 @@ class Pqueue {
 			numPriorities(NUM_PRIORITIES),
 			numTimeouts(NUM_TIMEOUTS),
 			timeoutTimes{s, m, l} {}
-		void addItem(Item item);
+		bool addItem(Item item);
 		int count();
 		bool empty();
 		Item popTop();

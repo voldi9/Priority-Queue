@@ -11,8 +11,8 @@ int Pqueue::count() {
 	return count;
 }
 
-//adds item to pqueue
-void Pqueue::addItem(Item item) {
+//adds item to pqueue, returns if it succeeded
+bool Pqueue::addItem(Item item) {
 	int p = item.getPriority();
 	int t = item.getTimeout();
 	
@@ -29,7 +29,9 @@ void Pqueue::addItem(Item item) {
 	else {
 		item.setTimeAdded(getCurrentTime());
 		itemsByProperties[p][t].push(item);
+		return true;
 	}
+	return false;
 }
 
 
@@ -45,7 +47,6 @@ bool Pqueue::empty() {
 	return true;
 }
 
-#include <stdexcept>
 //returns the top element of Pqueue and deletes it (many of the STL containers' deletion methods return the deleted item,
 //I decided to do so as well). If pqueue is empty prints error and returns faulty Item with both priority and timeout set to -1
 Item Pqueue::popTop() {
